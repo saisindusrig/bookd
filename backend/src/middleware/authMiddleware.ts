@@ -5,6 +5,10 @@ interface JwtPayload{
 }
 export interface AuthRequest extends Request{
     userId? : string;
+     
+  params: {
+    bookId?: string;
+  };
 }
 export const protect = (
     req: AuthRequest,
