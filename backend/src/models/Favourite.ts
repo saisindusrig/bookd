@@ -20,6 +20,10 @@ const favouriteSchema = new Schema<IFavourite>(
         {timestamps:true}
     
 )
+favouriteSchema.index(
+  { userId: 1, bookId: 1 },
+  { unique: true }
+);
 const Favourite = mongoose.model<IFavourite>(
     "Favourite",
     favouriteSchema

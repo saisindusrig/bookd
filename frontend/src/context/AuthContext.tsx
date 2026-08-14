@@ -41,6 +41,7 @@ export const AuthProvider = ({children}:AuthProviderProps)=>{
                     throw new Error("Invalid token!")
                 }
                 const data = await response.json();
+                console.log("ME RESPONSE:", data);
                 setUser(data.user)
             }catch(error){
                 console.error("Authentication check failed: ",error)
@@ -66,6 +67,15 @@ export const AuthProvider = ({children}:AuthProviderProps)=>{
         setToken(null)
         setUser(null)
     }
+    console.log(
+  "AUTH STATE:",
+  {
+    token,
+    user,
+    isAuthenticated: !!user,
+    loading
+  }
+);
     return (
         <AuthContext.Provider value={{user,token,isAuthenticated: !!user, loading,login,logout}}>
             {children}

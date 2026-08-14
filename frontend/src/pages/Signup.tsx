@@ -1,6 +1,6 @@
 import { useState, type FormEvent} from "react"
 import { signupUser } from "../api/auth"
-
+import { Link } from "react-router-dom";
 const Signup = () => {
     const [username,setUsername] = useState("");
     const [email,setEmail] = useState("");
@@ -65,6 +65,7 @@ const Signup = () => {
             <button type="submit" className="w-full bg-primary px-4 py-3 text-background">
                 Sign up
             </button>
+            <span>Already have an account? Click <Link to="/login" className="underline">here</Link> to Log in</span>
         </form>
     </div>
   )

@@ -2,7 +2,7 @@ import { useAuth } from "../context/AuthContext";
 import { useState, type FormEvent } from "react"
 import { loginUser } from "../api/auth"
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -20,26 +20,11 @@ const Login = () => {
         email,
         password
       });
-
-      // localStorage.setItem("token", result.token!);
-
-      // setSuccess("Login successful!");
-
-      // console.log("Logged in user:", result.user);
-      // console.log("JWT:", result.token);
-      // login(result.token!, result.user);
-      console.log("1. LOGIN API RESULT:", result);
-
-  console.log("2. TOKEN:", result.token);
-
-  console.log("3. USER:", result.user);
-
-  login(result.token!, result.user);
-
-  console.log(
-    "4. LOCAL STORAGE TOKEN:",
-    localStorage.getItem("token")
-  );
+      if(!result.token){
+        throw new Error("Login succeeded but no token was returned")
+      }
+     login(result.token, result.user)
+     setSuccess("Login Successfully")
       navigate("/")
       
     } catch (error) {
@@ -89,7 +74,7 @@ const Login = () => {
         >
           Login
         </button>
-
+        <span>Don't have an account? Click <Link to="/signup" className="underline">here</Link> to Register</span>
         </form>
     </div>
   )

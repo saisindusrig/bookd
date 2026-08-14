@@ -4,7 +4,7 @@ import { protect } from "../middleware/authMiddleware";
 
 const router = Router();
 router.get("/",protect,getMyFavourites)
-router.get("/", protect, checkFavourite)
+router.get("/:bookId", protect, checkFavourite)
 router.post("/:bookId", protect, addFavourite)
 router.delete("/:bookId", protect, removeFavourite);
 export default router;
