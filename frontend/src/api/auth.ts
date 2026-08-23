@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000/api";
 
 export interface SignupData {
   username: string;
@@ -23,41 +25,69 @@ export interface AuthResponse {
   token?: string;
 }
 
+/*
+|--------------------------------------------------------------------------
+| SIGNUP
+|--------------------------------------------------------------------------
+*/
+
 export const signupUser = async (
   data: SignupData
 ): Promise<AuthResponse> => {
-  const response = await fetch(`${API_URL}/auth/signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
+  const response = await fetch(
+    `${API_URL}/auth/signup`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type":
+          "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
-  const result = await response.json();
+  const result =
+    await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || "Signup failed");
+    throw new Error(
+      result.message ||
+        "Signup failed."
+    );
   }
 
   return result;
 };
 
+/*
+|--------------------------------------------------------------------------
+| LOGIN
+|--------------------------------------------------------------------------
+*/
+
 export const loginUser = async (
   data: LoginData
 ): Promise<AuthResponse> => {
-  const response = await fetch(`${API_URL}/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
+  const response = await fetch(
+    `${API_URL}/auth/login`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type":
+          "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
-  const result = await response.json();
+  const result =
+    await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || "Login failed");
+    throw new Error(
+      result.message ||
+        "Login failed."
+    );
   }
 
   return result;

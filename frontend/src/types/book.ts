@@ -10,6 +10,7 @@ export interface Book {
   description: string;
   pages: number;
   language: string;
+  source?: "open-library" | "google-books";
   trending?: boolean;
 }
 
