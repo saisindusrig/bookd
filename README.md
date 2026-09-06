@@ -276,7 +276,7 @@ http://localhost:5173
 
 ## 🚀 Deployment
 
-BOOKD is deployed using free-tier services:
+BOOKD is deployed in this simple way:
 
 ```text
 Frontend
